@@ -14,11 +14,20 @@ except Exception as e:
 motors = Motors()
 motors.init_motors(a)
 
-while True:
-    motors.forward(a, 100, 100)
-    sleep(1)
-    motors.reverse(a, 100, 100)
-    sleep(1)
+while(True):
+    key = input('Move Roboto ')
+    print(key)
+    if key == '\x1b[A':
+        print('up')
+        motors.forward(a, 100, 100)
+
+    elif key == '\x1b[B':
+        print('down')
+        motors.reverse(a, 100, 100)
+    else:
+        print('quitting...')
+        motors.stop(a)
+
 
 
             
