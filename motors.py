@@ -1,8 +1,8 @@
 class Motors(object):
     def __init__(self):
         self.enA = 10
-        self.in1 = 8#9
-        self.in2 = 9#8
+        self.in1 = 9#9
+        self.in2 = 8#8
         self.enB = 5
         self.in3 = 7
         self.in4 = 6
@@ -18,8 +18,8 @@ class Motors(object):
 
     def reverse(self, a, left, right):
         # turn on motor A
-        a.digitalWrite(self.in1, a.HIGH)
-        a.digitalWrite(self.in2, a.LOW)
+        a.digitalWrite(self.in1, a.LOW)
+        a.digitalWrite(self.in2, a.HIGH)
         # pwm is limited to 0-255
         if(left > 255):
             left = 255
@@ -41,8 +41,8 @@ class Motors(object):
 
     def forward(self, a, left, right):
         # turn on motor A
-        a.digitalWrite(self.in1, a.LOW)
-        a.digitalWrite(self.in2, a.HIGH)
+        a.digitalWrite(self.in1, a.HIGH)
+        a.digitalWrite(self.in2, a.LOW)
         if left > 255:
             left = 255
         if left < 0:
