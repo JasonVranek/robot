@@ -1,0 +1,4 @@
+nanpy==0.9.6
+numpy==1.14.2
+picamera==1.13
+pyserial==3.4

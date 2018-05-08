@@ -20,26 +20,22 @@ while(True):
     if key == '\x1b[A':
         print('up')
         motors.forward(a, 200, 200)
-        sleep(1) 
+        sleep(.5) 
         motors.stop(a)
     elif key == '\x1b[C':
         print('rotate right')
-        motors.forward(a, 0, 200)
-        sleep(.5)
-        motors.reverse(a, 0, 200)
+        motors.drive(a, 200, -200)
         sleep(.5)
         motors.stop(a)
     elif key == '\x1b[D':
         print('rotate left')
-        motors.forward(a, 200, 0)
-        sleep(.5)
-        motors.reverse(a, 200, 0)
+        motors.drive(a, -200, 200)
         sleep(.5)
         motors.stop(a)
     elif key == '\x1b[B':
         print('down')
         motors.reverse(a, 200, 200)
-        sleep(1)
+        sleep(.5)
         motors.stop(a)
     else:
         print('quitting...')
