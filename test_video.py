@@ -1,4 +1,4 @@
-# import the necessary packages
+'''# import the necessary packages
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 import time
@@ -28,4 +28,24 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     # if the `q` key was pressed, break from the loop
     if key == ord("q"):
         break
+'''
+
+from __future__ import print_function
+import cv2
+import imutils
+import time
+from PiVideoStream import PiVideoStream
+from imutils.video.pivideostream import PiVideoStream
+
+camera = PiVideoStream().start()
+time.sleep(2.0)
+i=100000
+while(i):
+	frame = camera.read()
+	frame = imutils.resize(frame, width=400)
+	cv2.imshow("Frame", frame)
+	key = cv2.waitKey(1) & 0xFF
+	i-=1
+camera.stop()
+print('done')
 
