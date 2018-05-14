@@ -36,9 +36,6 @@ while(True):
 	# if the `q` key was pressed, break from the loop
 	if key == ord("q"):
 		break
-
-	#key = input('Move Roboto ')
-	#print(key)
 	if key == ord('w'):
 		print('up')
 		motors.forward(a, 200, 200)
