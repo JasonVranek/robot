@@ -13,7 +13,12 @@ greenUpper = (64, 255, 255)
 #buffer = 64
 # initialize the list of tracked points, to draw the ball trayectory
 #pts = deque(64)
-#resolution=(64,64)
+#resolution=(64,64)255 8 127
+pink = (127, 8, 255)
+# Pinks HSV in CV2 is H=165 S=96.9%, V=100%
+pink_max = np.array([180, 255, 255], np.uint8)
+pink_min = np.array([165, 50, 50], np.uint8)
+THICKNESS = -1
 camera = PiVideoStream().start()
 time.sleep(2.0)
 i=100000
@@ -54,12 +59,17 @@ while(i):
 			# draw the circle and centroid on the frame,
 			# then update the list of tracked points
 			cv2.circle(frame, (int(x), int(y)), int(radius),
-				(0, 255, 255), 2)
-			cv2.circle(frame, center, 5, (0, 0, 255), -1)
+				pink, THICKNESS)
+			#cv2.circle(frame, center, 5, (0, 0, 255), -1)
+			
+		hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+		mask = cv2.inRange(hsv, pink_min, pink_max)
+		mask = cv2.erode(mask, None, iterations=2)
+		mask = cv2.dilate(mask, None, iterations=2)
 	
 	
-	cv2.imshow("Frame", frame)
-	#cv2.imshow("Mask", mask)
+	#cv2.imshow("Frame", frame)
+	cv2.imshow("Mask", mask)
 	key = cv2.waitKey(1) & 0xFF
 	if key == ord("q"):
 		break
